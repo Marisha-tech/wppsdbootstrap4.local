@@ -50,7 +50,7 @@ if ( ! function_exists( 'bluerex_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'bluerex' ),
+				'header_menu' => esc_html__( 'Header Menu', 'bluerex' ),
 			)
 		);
 
@@ -94,8 +94,8 @@ if ( ! function_exists( 'bluerex_setup' ) ) :
 		add_theme_support(
 			'custom-logo',
 			array(
-				'height'      => 250,
-				'width'       => 250,
+				'height'      => 69,
+				'width'       => 62,
 				'flex-width'  => true,
 				'flex-height' => true,
 			)
@@ -144,9 +144,23 @@ add_action( 'widgets_init', 'bluerex_widgets_init' );
  */
 function bluerex_scripts() {
 	wp_enqueue_style( 'bluerex-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'bluerex-style', 'rtl', 'replace' );
+    wp_enqueue_style( 'bluerex-boostrap-css', get_template_directory_uri().'/assets/bootstrap/css/bootstrap.min.css', array(), _S_VERSION );
+    wp_enqueue_style( 'bluerex-fontawesome-css', 'https://kit.fontawesome.com/7b292b2c1c.js', array(), _S_VERSION );
+    wp_enqueue_style( 'bluerex-googlefonts-css', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap', array(), _S_VERSION );
+    wp_enqueue_style( 'bluerex-baguetteBox-css', get_template_directory_uri().'/assets/css/baguetteBox.min.css', array(), _S_VERSION );
+    wp_enqueue_style( 'bluerex-style-css', get_template_directory_uri().'/assets/css/style.css', array(), _S_VERSION );
 
-	wp_enqueue_script( 'bluerex-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+    //wp_style_add_data( 'bluerex-style', 'rtl', 'replace' );
+
+    wp_deregister_script('jquery');
+    wp_register_script('jquery',get_template_directory_uri().'/assets/js/jquery-3.5.1.min.js');
+    wp_enqueue_script('jquery');
+
+	//wp_enqueue_script( 'bluerex-jquery', get_template_directory_uri() . '/assets/js/jquery-3.5.1.min.js', array(), _S_VERSION, true );
+    wp_enqueue_script( 'bluerex-popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array(), '', true );
+    wp_enqueue_script( 'bluerex-bootstrap-js', get_template_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array(), '', true );
+    wp_enqueue_script( 'bluerex-baguetteBox-js', get_template_directory_uri() . '/assets/js/baguetteBox.min.js', array(), '', true );
+    wp_enqueue_script( 'bluerex-main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -180,4 +194,8 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
+//Custom code
+function bluerex_debug($data)
+{
+    echo '<pre>'. print_r($data, 1) . '</pre>';
+}
