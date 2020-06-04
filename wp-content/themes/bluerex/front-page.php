@@ -1,51 +1,65 @@
 <?get_header('main');?>
-<section class="section-watch section-tabs">
+<?
+$design_cat = get_category(3);
+
+if($design_cat):?>
+    <?$posts = get_posts(array(
+            'numberposts' => 3,
+            'category'    => $design_cat->term_id,
+    ));
+
+?>
+<section class="section-watch section-tabs" <?echo bluerex_get_background('section_img',$design_cat)?>>
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mb-5">
-                <h3>Dream Big Inspire the World</h3>
-                <h4>We turn creative ideas into your business.</h4>
+                <?if(get_field('section_header',$design_cat)):?>
+                    <h3><?the_field('section_header',$design_cat)?></h3>
+                <?endif?>
+                <?bluerex_debug($item['url']);?>
+                <h4><?=$design_cat->description ?></h4>
                 <ul class="nav nav-pills" id="myTab" role="tablist">
+                    <?
+                    $data = [];
+                    $i = 0;
+                    foreach( $posts as $post ):?>
+                        <?setup_postdata($post);
+                        $data[$i]['post_name'] = $post->post_name;
+                        $data[$i]['url'] = get_the_permalink();
+                        $data[$i]['content'] = get_the_content('');
+                        //bluerex_debug($posts);
+                        ?>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active rounded-pill" id="webdesign-tab" data-toggle="tab" href="#webdesign" role="tab" aria-controls="webdesign" aria-selected="true">Webdesign</a>
+                        <a class="nav-link  rounded-pill <?if (!$i) echo 'active'?>" id="<?echo $post->post_name?>-tab" data-toggle="tab" href="#<?=$post->post_name?>" role="tab" aria-controls="webdesign" aria-selected="true"><?=the_title()?></a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="mobileapp-tab rounded-pill" data-toggle="tab" href="#mobileapp" role="tab" aria-controls="mobileapp" aria-selected="false">Mobile app</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="breading-tab rounded-pill" data-toggle="tab" href="#breading" role="tab" aria-controls="breading" aria-selected="false">Breading</a>
-                    </li>
+                    <?$i++;?>
+                    <?endforeach;?>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="webdesign" role="tabpanel" aria-labelledby="webdesign-tab">
-                        <p>Webdesign Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem impedit in incidunt
-                            itaque nam odit omnis repellendus sed. Cupiditate deserunt dolore eum incidunt maxime neque
-                            nobis officia ratione sed tenetur?</p>
-                        <p><a href="#" class="btn btn-pink btn-shadow">Read more</a></p>
-                    </div>
-                    <div class="tab-pane fade" id="mobileapp" role="tabpanel" aria-labelledby="mobileapp-tab">
-                        <p>Mobile app Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores, aspernatur
-                            dolorum et excepturi exercitationem fuga harum hic illum ipsum maiores necessitatibus
-                            nesciunt perferendis provident quo repudiandae sequi sint veniam.</p>
-                        <p><a href="#" class="btn btn-pink btn-shadow">Read more</a></p>
-                    </div>
-                    <div class="tab-pane fade" id="breading" role="tabpanel" aria-labelledby="breading-tab">
-                        <p>Breading Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur eaque eum fugit
-                            maxime, non omnis quod recusandae sapiente tempore voluptate? Accusamus aspernatur, eligendi
-                            laboriosam rerum soluta temporibus totam vero voluptatum?</p>
-                        <p><a href="#" class="btn btn-pink btn-shadow">Read more</a></p>
-                    </div>
+                    <?foreach ($data as $k => $item):?>
+                        <?//bluerex_debug($item['url']);?>
+                        <div class="tab-pane fade show <?if (!$k) echo 'active'?>" id="<?=$item['post_name']?>" role="tabpanel" aria-labelledby="<?=$item['post_name']?>-tab">
+                            <p><?=$item['content']?></p>
+                            <p><a href="<?$item['url']?>" class="btn btn-pink btn-shadow">Read more</a></p>
+                        </div>
+                    <?endforeach;?>
                 </div>
             </div>
             <!-- /.col-md-6 -->
             <div class="col-lg-6 text-center">
-                <img src="<?echo bloginfo(template_url);?>/assets/img/watch.png" alt="">
+            <?if(get_field('section_add_img',$design_cat)):?>
+                <img src="<?=get_field('section_add_img',$design_cat)?>" alt="">
+            <?endif?>
+<!--                <img src="--><?//echo bloginfo(template_url);?><!--/assets/img/watch.png" alt="">-->
             </div>
             <!-- /.col-md-6 -->
         </div>
     </div>
+    <?wp_reset_postdata();
+    unset($data,$posts);?>
 </section>
 <!-- /.section-watch -->
+<?endif;?>
 <section class="section-progress text-center">
     <div class="container">
         <div class="row">
