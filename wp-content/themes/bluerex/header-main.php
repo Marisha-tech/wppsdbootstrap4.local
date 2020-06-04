@@ -15,7 +15,7 @@
             background-color: #fefefe;
         }
     </style>-->
-    <title>Hello, world!</title>
+<!--    <title>Hello, world!</title>-->
     <?wp_head()?>
 </head>
 <body>
