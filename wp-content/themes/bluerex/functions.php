@@ -199,3 +199,13 @@ function bluerex_debug($data)
 {
     echo '<pre>'. print_r($data, 1) . '</pre>';
 }
+
+function bluerex_get_background($field, $cat = null, $cover = true)
+{
+    if (get_field($field, $cat))
+    {
+        $add_style = $cover ? 'background-size: cover' : '';
+        return ' style="background: url('.get_field($field, $cat) . ') center no-repeat; '.$add_style . '"';
+    }
+    return null;
+}
