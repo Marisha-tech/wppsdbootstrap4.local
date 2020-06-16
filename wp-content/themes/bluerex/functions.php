@@ -210,3 +210,23 @@ function bluerex_get_background($field, $cat = null, $cover = true)
     }
     return null;
 }
+add_action( 'init', 'bluerex_reviews' );
+function bluerex_reviews(){
+    register_post_type( 'reviews', [
+        'labels' => [
+            'name'               => 'Отзывы', // основное название для типа записи
+            'singular_name'      => 'Отзыв', // название для одной записи этого типа
+            'add_new'            => __('Добавить новый отзыв', 'bluerex'), // для добавления новой записи
+            'add_new_item'       => __('Новый отзыв', 'bluerex'), // заголовка у вновь создаваемой записи в админ-панели.
+            'edit_item'          => __('Редактировать', 'bluerex'), // для редактирования типа записи
+            'new_item'           => __('Новый отзыв', 'bluerex'), // текст новой записи
+            'view_item'          => __('Посмотреть', 'bluerex'), // для просмотра записи этого типа.
+            'menu_name'          => 'Отзывы клиентов', // название меню
+            'all_items'          => 'Все отзывы'
+        ],
+        'public'              => true,
+        'supports'            => [ 'title', 'editor', 'thumbnail' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+        'menu_icon'           => 'dashicons-universal-access',
+        'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+    ] );
+}
