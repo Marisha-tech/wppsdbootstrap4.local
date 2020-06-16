@@ -1,6 +1,6 @@
 
 $(function () {
-    baguetteBox.run('.gallery');/*Для галереи*/
+    baguetteBox.run('.wp-block-gallery');/*Для галереи*/
 
     /*Для прелоадера*/
     $(window).on('load', function () {
