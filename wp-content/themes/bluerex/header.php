@@ -25,8 +25,8 @@
     </div>
 </div>-->
 <button class="scrollToTop"><i class="fas fa-angle-up"></i></button>
-<header class="main-header" <?echo bluerex_get_background('header_bg')?>>
-    <nav class="navbar navbar-expand-lg">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="<?echo home_url('/')?>">
             <?$custom_logo = wp_get_attachment_image_src(get_theme_mod('custom_logo'));?>
             <?if ($custom_logo):?>
@@ -47,29 +47,4 @@
             ))?>
         </div>
     </nav>
-    <div class="main-header-text">
-
-        <?if(get_field('header1')):?>
-            <h3><?the_field('header1')?></h3>
-        <?endif?>
-        <?if(get_field('header2')):?>
-            <h4><?the_field('header2')?></h4>
-        <?endif?>
-        <?if(get_field('header_text')):?>
-            <p><?the_field('header_text')?></p>
-        <?endif?>
-
-        <div class="main-header-buttons">
-
-            <?if(get_field('header_btn1')):?>
-                <?$link = get_field('header_btn1');?>
-                <a href="<?echo esc_url( $link['url']); ?>" class="btn btn-pink rounded-pill"><?echo esc_html( $link['title']);?></a>
-            <?endif?>
-            <?if(get_field('header_btn2')):?>
-                <?$link = get_field('header_btn2');?>
-                <a href="<?echo esc_url( $link['url']); ?>" class="btn btn-violet rounded-pill"><?echo esc_html( $link['title']);?></a>
-            <?endif?>
-        </div>
-    </div>
-    <!-- /.main-header-text -->
 </header>
