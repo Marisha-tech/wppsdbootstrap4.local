@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--<style>
+    <style>
         .preloader
         {
             position: fixed;
@@ -14,16 +14,16 @@
             z-index: 9999;
             background-color: #fefefe;
         }
-    </style>-->
+    </style>
 <!--    <title>Hello, world!</title>-->
     <?wp_head()?>
 </head>
 <body>
-<!--<div class="preloader d-flex align-items-center justify-content-center">
+<div class="preloader d-flex align-items-center justify-content-center">
     <div class="spinner-border text-danger" style="width: 10rem; height: 10rem;" role="status">
         <span class="sr-only">Loading...</span>
     </div>
-</div>-->
+</div>
 <button class="scrollToTop"><i class="fas fa-angle-up"></i></button>
 <header class="main-header" <?echo bluerex_get_background('header_bg')?>>
     <nav class="navbar navbar-expand-lg">
