@@ -155,6 +155,15 @@ div.wpcf7-mail-sent-ok
 {
     background-color: #69328e;
 }
+.navbar-dark .navbar-nav .menu-item a
+{
+    color: rgba(255, 255, 255, .5);
+}
+.navbar-dark .navbar-nav .menu-item a:focus,
+.navbar-dark .navbar-nav .menu-item a:hover
+{
+    color: rgba(255, 255, 255, .75);
+}
 /*==============================.section-watch==============================*/
 .section-watch
 {
@@ -473,6 +482,12 @@ div.wpcf7-mail-sent-ok
     margin-bottom: 20px;
     border-radius: 15px;
 }
+.gallery-item
+{
+    float: left;
+    max-height: 45%;
+    margin-right: 20px;
+}
 .copyright
 {
     background-color: #f6f6f6;
@@ -604,7 +619,8 @@ div.wpcf7-mail-sent-ok
     width: 30px;
     background-color: #da1557;
 }
-/*==============================page-link==============================*/
+/*==============================pagination==============================*/
+
 .page-link
 {
     color: #da1757;
@@ -623,8 +639,37 @@ div.wpcf7-mail-sent-ok
     background-color: #da1757;
     border-color: #f42267;
 }
-
-
+ul.page-numbers
+{
+    list-style: none;
+    display: flex;
+}
+ul.page-numbers a.page-numbers,
+ul.page-numbers span
+{
+    color: #da1757;
+    transition: all .5s;
+    padding: .5rem 1rem;
+    position: relative;
+    display: block;
+    margin-left: -1px;
+    line-height: 1.25;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+ul.page-numbers span.current
+{
+    background-color: #da1757;
+    border-color: #da1757;
+    color: #ffffff;
+}
+ul.page-numbers a.page-numbers:hover
+{
+    background-color: #fa2267;
+    color: #ffffff;
+    border-color: #fa2267;
+    text-decoration: none;
+}
 
 
 /*Экстрабольшие девайсы (большие десктопы, >= 1200px)*/
@@ -661,6 +706,10 @@ div.wpcf7-mail-sent-ok
     {
         font-size: 100px;
         top: -40px;
+    }
+    .gallery-item
+    {
+        margin-right: 10px;
     }
 }
 @media only screen and (max-width: 991px) {
